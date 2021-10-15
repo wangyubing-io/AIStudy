@@ -8,7 +8,7 @@ path = 'resource/all_work_code/exerise1/ex1data2.txt'
 data = ps.read_csv(path, header=None, names=['size', 'homes', 'prices'])
 # print(data.head())
 
-# 对数据进行处理, 特征归一化
+# 对数据进行处理, 特征归一化, 特征缩放
 # 每一维减去均值,除以方差
 data = (data - data.mean()) / data.std()
 
