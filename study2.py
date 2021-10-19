@@ -41,7 +41,7 @@ theta = np.matrix(np.array([0, 0, 0]))
 
 # 梯度下降法
 
-# 梯度下降, x,y theta初始猜测值,alpha学习速率,iters学习次数
+# 梯度下降, x 输入,y 输出 theta初始猜测值,alpha学习速率,iters学习次数
 def grandientDecline(x, y, theta, alpha, iters):
     tmp = np.matrix(np.zeros(theta.shape))
     # 求解的参数个数
