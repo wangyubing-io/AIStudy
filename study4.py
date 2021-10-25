@@ -62,4 +62,40 @@ ax.set_ylabel('g(z)', fontsize=18)
 ax.set_title('sigmoid', fontsize=18)
 plt.show()
 
-#
+
+# cost函数
+def cost(theta, X, y):
+    return np.mean(-(1 - y) * np.log(1 - sigmoid(X.dot(theta))) - y * np.log(sigmoid(X.dot(theta))))
+
+
+theta = np.zeros(3)
+print(theta)
+
+cost_value = cost(theta, X, y)
+print('cost_value = ' + str(cost_value))
+
+
+# 梯度下降
+def gradient(theta, X, y):
+    return (1 / len(X)) * X.T @ (sigmoid(X @ theta) - y)
+
+
+cost_value = gradient(theta, X, y)
+# print(type(cost_value))
+print(cost_value)
+
+import scipy.optimize as opt
+
+res = opt.minimize(fun=cost, x0=theta, args=(X, y), method='Newton-CG', jac=gradient)
+print(res)
+
+
+# 训练集验证
+def predict(x, theta):
+    prob = sigmoid(x.dot(theta))
+    return (prob >= 0.5).astype(int)
+
+
+final_theta = res.x
+y_pred = predict(X, final_theta)
+print(classification_report(y, y_pred))
